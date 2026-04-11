@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patrick & Patrycja</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f9f7f4;
+    color: #333;
+}
+
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url('https://images.unsplash.com/photo-1529636798458-92182e662485');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    margin: 0;
+}
+
+header p {
+    font-size: 20px;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+.countdown {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.map {
+    width: 100%;
+    height: 300px;
+    border: none;
+}
+
+.gallery img {
+    width: 30%;
+    margin: 1%;
+    border-radius: 10px;
+}
+
+.lang {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lang">
+    <button onclick="setLang('pl')">PL</button>
+    <button onclick="setLang('de')">DE</button>
+</div>
+
+<header>
+    <div>
+        <h1>Patrick & Patrycja</h1>
+        <p id="subtitle">Soon die Bork's!</p>
+        <p>05.09.2026 | 16:00</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
+</header>
+
+<section>
+    <h2 id="schedule-title">Harmonogram</h2>
+    <p id="schedule-text">Ceremonia i wesele w jednym miejscu.</p>
+</section>
+
+<section>
+    <h2 id="location-title">Lokalizacja</h2>
+    <iframe class="map"
+    src="https://maps.google.com/maps?q=Hotel%20Ostaniec%20Podlesice&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
+
+<section>
+    <h2 id="about-title">O nas</h2>
+    <p id="about-text">Nasza historia zaczyna się...</p>
+</section>
+
+<section>
+    <h2 id="stay-title">Noclegi</h2>
+    <p id="stay-text">Możliwość noclegu w Hotelu Ostaniec. Szczegóły wkrótce.</p>
+</section>
+
+<section class="gallery">
+    <h2 id="gallery-title">Galeria</h2>
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf">
+    <img src="https://images.unsplash.com/photo-1505236731920-5c7f3c2a1f8c">
+</section>
+
+<section>
+    <h2 id="faq-title">FAQ</h2>
+    <p id="faq-text">Więcej informacji wkrótce.</p>
+</section>
+
+<script>
+const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    document.getElementById("countdown").innerHTML = days + " dni";
+}, 1000);
+
+function setLang(lang) {
+    if(lang === 'de') {
+        document.getElementById("schedule-title").innerText = "Zeitplan";
+        document.getElementById("location-title").innerText = "Ort";
+        document.getElementById("about-title").innerText = "Über uns";
+        document.getElementById("stay-title").innerText = "Unterkunft";
+        document.getElementById("gallery-title").innerText = "Galerie";
+        document.getElementById("faq-title").innerText = "FAQ";
+    } else {
+        document.getElementById("schedule-title").innerText = "Harmonogram";
+        document.getElementById("location-title").innerText = "Lokalizacja";
+        document.getElementById("about-title").innerText = "O nas";
+        document.getElementById("stay-title").innerText = "Noclegi";
+        document.getElementById("gallery-title").innerText = "Galeria";
+        document.getElementById("faq-title").innerText = "FAQ";
+    }
+}
+</script>
+
+</body>
+</html>
