@@ -139,7 +139,11 @@ setInterval(() => {
     const distance = weddingDate - now;
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    document.getElementById("countdown").innerHTML = days + " dni";
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+
+    document.getElementById("countdown").innerHTML =
+    days + " dni " + hours + " godz " + minutes + " min";
 }, 1000);
 
 function setLang(lang) {
