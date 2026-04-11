@@ -8,16 +8,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: #f9f7f4;
-    color: #333;
+    background: #ffffff;
+    color: #222;
+    line-height: 1.7;
 }
 
 header {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
     url('https://images.unsplash.com/photo-1529636798458-92182e662485');
     background-size: cover;
     background-position: center;
@@ -30,8 +36,9 @@ header {
 
 header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 60px;
+    font-size: 64px;
     margin: 0;
+    letter-spacing: 1px;
 }
 
 header p {
@@ -39,69 +46,84 @@ header p {
 }
 
 section {
-    padding: 60px 20px;
-    max-width: 1000px;
+    padding: 100px 20px;
+    max-width: 900px;
     margin: auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 h2 {
     text-align: center;
     font-family: 'Playfair Display', serif;
-    color: #bfa46f;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
 }
 
 .countdown {
     font-size: 26px;
-    text-align: center;
     margin-top: 20px;
 }
 
 .map {
     width: 100%;
-    height: 300px;
+    height: 350px;
     border: none;
+    margin-top: 30px;
 }
 
 .gallery img {
     width: 100%;
     max-width: 900px;
     display: block;
-    margin: auto;
-    border-radius: 10px;
+    margin: 40px auto;
 }
 
 .lang {
     position: fixed;
     top: 20px;
     right: 20px;
+    z-index: 10;
 }
 
 button {
-    padding: 10px 15px;
+    padding: 10px 16px;
     margin: 5px;
-    border: none;
-    background: #bfa46f;
-    color: white;
+    border: 1px solid #ddd;
+    background: white;
     cursor: pointer;
-    border-radius: 6px;
+}
+
+.qr {
+    display: block;
+    margin: 30px auto;
 }
 
 /* MOBILE */
+
 @media (max-width: 768px) {
 
     header h1 {
-        font-size: 36px;
-    }
-
-    header p {
-        font-size: 16px;
+        font-size: 38px;
     }
 
     section {
-        padding: 40px 15px;
+        padding: 70px 18px;
     }
 
 }
+
 </style>
 </head>
 
@@ -122,33 +144,27 @@ button {
 </header>
 
 <section>
-    <h2 id="schedule-title">Harmonogram</h2>
+    <h2 class="trans" data-pl="Harmonogram" data-de="Zeitplan"></h2>
 
-    <p>
-    16:00 — Ceremonia Ślubna<br>
-    17:00 — Obiad<br>
-    18:00 — Życzenia<br>
-    19:30 — Tort<br>
-    20:00 — Pierwszy taniec już Borków<br>
-    22:00 — II ciepłe danie<br>
-    00:00 — Oczepiny<br>
-    01:30 — Wypierdalacz w bufecie*
-    </p>
+    <p class="trans" 
+    data-pl="16:00 — Ceremonia Ślubna\n17:00 — Obiad\n18:00 — Życzenia\n19:30 — Tort\n20:00 — Pierwszy taniec już Borków\n22:00 — II ciepłe danie\n00:00 — Oczepiny\n01:30 — Wypierdalacz w bufecie*"
+    data-de="16:00 — Trauung\n17:00 — Mittagessen\n18:00 — Glückwünsche\n19:30 — Torte\n20:00 — Eröffnungstanz der Borks\n22:00 — Zweites warmes Gericht\n00:00 — Mitternachtsspiele\n01:30 — Überraschung am Buffet*"></p>
 
-    <p><i>*Z humorem — żeby nikt dziś nie zapomniał cieszyć się życiem.</i></p>
+    <p class="trans"
+    data-pl="*Z humorem — żeby nikt dziś nie zapomniał cieszyć się życiem."
+    data-de="*Mit Humor — damit heute niemand vergisst, das Leben zu genießen."></p>
 </section>
 
 <section>
-    <h2>Poprawiny</h2>
-    <p>
-    Zapraszamy w niedzielę od godziny <b>15:00</b><br>
-    na luźne tańce i grill.<br><br>
-    Poprawiny odbędą się w tym samym miejscu co wesele.
-    </p>
+    <h2 class="trans" data-pl="Poprawiny" data-de="Nachfeier"></h2>
+
+    <p class="trans"
+    data-pl="Zapraszamy w niedzielę od godziny 15:00 na luźne tańce i grill. Poprawiny odbędą się w tym samym miejscu co wesele."
+    data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu lockerem Tanzen und Grillen ein. Die Nachfeier findet am selben Ort statt."></p>
 </section>
 
 <section>
-    <h2 id="location-title">Lokalizacja</h2>
+    <h2 class="trans" data-pl="Lokalizacja" data-de="Ort"></h2>
 
     <p>
     Hotel Ostaniec<br>
@@ -161,11 +177,14 @@ button {
 </section>
 
 <section>
-    <h2>Zdjęcia z wesela</h2>
-    <p>
-    Podziel się zdjęciami z wesela!<br>
-    Zeskanuj kod QR lub kliknij przycisk poniżej.
-    </p>
+    <h2 class="trans" data-pl="Zdjęcia z wesela" data-de="Fotos von der Hochzeit"></h2>
+
+    <p class="trans"
+    data-pl="Podziel się zdjęciami z wesela. Zeskanuj kod QR lub kliknij poniżej."
+    data-de="Teile deine Fotos von der Hochzeit. Scanne den QR-Code oder klicke unten."></p>
+
+    <img class="qr"
+    src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA">
 
     <p>
     <a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank">
@@ -175,76 +194,71 @@ button {
 </section>
 
 <section>
-    <h2>Zamiast kwiatów</h2>
-    <p>
-    Zamiast kwiatów zachęcamy do wsparcia szczytnego celu.<br>
-    Podczas przyjęcia będzie dostępna puszka na cele charytatywne.<br>
-    Po weselu chcemy wspomóc jedną konkretną osobę, która potrzebuje realnej pomocy.
-    </p>
+    <h2 class="trans" data-pl="Zamiast kwiatów" data-de="Statt Blumen"></h2>
+
+    <p class="trans"
+    data-pl="Zamiast kwiatów zachęcamy do wsparcia szczytnego celu. Podczas przyjęcia będzie dostępna puszka na cele charytatywne. Po weselu chcemy wspomóc jedną konkretną osobę, która potrzebuje pomocy."
+    data-de="Anstelle von Blumen möchten wir zu einem guten Zweck ermutigen. Während der Feier wird eine Spendenbox vorhanden sein. Nach der Hochzeit möchten wir einer bestimmten Person helfen."></p>
 </section>
 
 <section>
     <h2>Dress code</h2>
+
     <p>
-    Prosimy, żeby blask Waszych strojów nie przyćmił nas
-    (pół żartem, pół serio).
+    Ubierzcie się pięknie — my postaramy się jeszcze piękniej.
+    🤍 🖤
     </p>
 </section>
 
 <section>
-    <h2>Transport i parking</h2>
-    <p>
-    Parkingu jest wystarczająco dużo.<br>
-    Jeśli ktoś planuje przylecieć z Niemiec do Polski samolotem,
-    pytajcie nas śmiało o wskazówki — chętnie pomożemy!
-    </p>
+    <h2 class="trans" data-pl="Transport i parking" data-de="Transport und Parkplatz"></h2>
+
+    <p class="trans"
+    data-pl="Parkingu jest wystarczająco dużo. Jeśli ktoś planuje przylecieć z Niemiec do Polski samolotem, pytajcie nas śmiało o wskazówki — chętnie pomożemy."
+    data-de="Es gibt ausreichend Parkplätze. Wenn jemand aus Deutschland mit dem Flugzeug anreisen möchte, fragt uns gerne nach Tipps — wir helfen gerne."></p>
 </section>
 
 <section class="gallery">
-    <h2>Noclegi</h2>
+    <h2 class="trans" data-pl="Noclegi" data-de="Unterkunft"></h2>
 
-    <p>
-    Noc z soboty na niedzielę jest na nasz koszt!<br>
-    Jeżeli planujecie przyjechać wcześniej lub zostać dłużej,
-    poniżej znajdziecie dostępne opcje noclegów.
-    </p>
+    <p class="trans"
+    data-pl="Jak już wiecie, noc z soboty na niedzielę idzie na nasz koszt! Jeżeli zamierzacie przyjechać wcześniej lub zostać dłużej poniżej macie zdjęcie z opisem: 1. Przyjęcie ślubne 2. Hotel Ostaniec z 36 dwuosobowymi pokojami i 6 Studio — 2 pokoje 2 osobowe z jedną łazienką 3. Osada Zborów tylko pokoje 2 osobowe."
+    data-de="Wie ihr bereits wisst, übernehmen wir die Übernachtung von Samstag auf Sonntag. Wenn ihr früher anreisen oder länger bleiben möchtet, findet ihr unten ein Bild mit Beschreibung der Unterkunftsmöglichkeiten."></p>
 
     <img src="mapa_noclegi.jpg" alt="Mapa noclegów">
 
-    <p>
-    <b>Pokój Studio</b> — to 2 osobne pokoje 2-osobowe
-    z jedną wspólną łazienką.<br>
-    Idealne rozwiązanie dla rodzin lub znajomych podróżujących razem.
-    </p>
+    <p class="trans"
+    data-pl="Potwierdzenie noclegów — im szybciej tym lepiej, ale nie później niż 01.06.2026. Dla gości śpiących przed lub po ceremonii noc dłużej wymagana jest wpłata zaliczki 200 zł na konto hotelu."
+    data-de="Bitte bestätigt eure Übernachtung so schnell wie möglich, spätestens jedoch bis zum 01.06.2026. Für zusätzliche Nächte ist eine Anzahlung von 200 zł direkt an das Hotel erforderlich."></p>
 
-    <p>
-    Prosimy wszystkich o przybycie do recepcji hotelu Ostaniec —
-    tam będziecie dalej pokierowani.
-    </p>
+    <p class="trans"
+    data-pl="Prosimy wszystkich o przybycie do recepcji hotelu Ostaniec — tam będziecie dalej pokierowani."
+    data-de="Bitte meldet euch bei der Rezeption des Hotels Ostaniec — dort werdet ihr weitergeleitet."></p>
 </section>
 
 <section>
-    <h2>Dzieci</h2>
-    <p>
-    Dla dzieci będzie dostępny animator
-    w godzinach 19:00–22:00.
-    </p>
+    <h2 class="trans" data-pl="Dzieci" data-de="Kinder"></h2>
+
+    <p class="trans"
+    data-pl="Dla dzieci będzie dostępny animator w godzinach 19:00–22:00."
+    data-de="Für Kinder steht ein Animator von 19:00 bis 22:00 Uhr zur Verfügung."></p>
 </section>
 
 <section>
-    <h2>Menu vege</h2>
+    <h2>Menu Vege</h2>
+
     <p>
-    Gości, którzy chcą mieć menu vege,
+    Gości, którzy chcą mieć menu Vege,
     prosimy o informację bezpośrednio do nas.
     </p>
 </section>
 
 <section>
-    <h2>Świadkowie</h2>
+    <h2 class="trans" data-pl="Świadkowie" data-de="Trauzeugen"></h2>
+
     <p>
     Łukasz — +48 510 977 997<br>
-    Michał — +48 503 833 619<br><br>
-    Śmiało możecie ich o wszystko pytać.
+    Michał — +48 503 833 619
     </p>
 </section>
 
@@ -253,6 +267,7 @@ button {
 const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
 
 setInterval(() => {
+
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
@@ -266,16 +281,37 @@ setInterval(() => {
 }, 1000);
 
 function setLang(lang) {
-    if(lang === 'de') {
-        document.getElementById("schedule-title").innerText = "Zeitplan";
-        document.getElementById("location-title").innerText = "Ort";
-        document.getElementById("subtitle").innerText = "Soon the Bork's";
-    } else {
-        document.getElementById("schedule-title").innerText = "Harmonogram";
-        document.getElementById("location-title").innerText = "Lokalizacja";
-        document.getElementById("subtitle").innerText = "Soon the Bork's";
-    }
+
+    document.querySelectorAll('.trans').forEach(el => {
+
+        if(lang === 'de') {
+            el.innerText = el.getAttribute('data-de');
+        }
+        else {
+            el.innerText = el.getAttribute('data-pl');
+        }
+
+    });
+
 }
+
+setLang('pl');
+
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+
+    sections.forEach(sec => {
+
+        const top = sec.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100) {
+            sec.classList.add("visible");
+        }
+
+    });
+
+});
 
 </script>
 
