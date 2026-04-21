@@ -4,6 +4,8 @@ let currentLang = "pl";
 
 const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
 
+/* LICZNIK */
+
 function updateCountdown() {
 
     const now = new Date().getTime();
@@ -13,12 +15,16 @@ function updateCountdown() {
     const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
     const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
 
+    const el = document.getElementById("countdown");
+
+    if(!el) return;
+
     if(currentLang === "de") {
-        document.getElementById("countdown").innerHTML =
+        el.innerHTML =
         days + " Tage " + hours + " Std " + minutes + " Min";
     }
     else {
-        document.getElementById("countdown").innerHTML =
+        el.innerHTML =
         days + " dni " + hours + " godz " + minutes + " min";
     }
 
@@ -26,6 +32,8 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+/* JĘZYK */
 
 function setLang(lang) {
 
@@ -46,10 +54,13 @@ function setLang(lang) {
 
 }
 
-/* Ukrywanie opcji Studio */
+/* UKRYWANIE STUDIO */
 
-const miejsceSelect = document.getElementById('miejsceSelect');
-const pokojSelect = document.getElementById('pokojSelect');
+const miejsceSelect =
+document.getElementById('miejsceSelect');
+
+const pokojSelect =
+document.getElementById('pokojSelect');
 
 if(miejsceSelect && pokojSelect) {
 
@@ -62,55 +73,80 @@ if(miejsceSelect && pokojSelect) {
             const option = pokojSelect.options[i];
 
             if (option.text.includes('Studio')) {
+
                 option.style.display =
-                value === 'Osada Zborów' ? 'none' : 'block';
+                value === 'Osada Zborów'
+                ? 'none'
+                : 'block';
+
             }
 
         }
 
-        if (value === 'Osada Zborów' &&
-            pokojSelect.value.includes('Studio')) {
-
+        if (
+            value === 'Osada Zborów' &&
+            pokojSelect.value.includes('Studio')
+        ) {
             pokojSelect.selectedIndex = 0;
-
         }
 
     }
 
-    miejsceSelect.addEventListener('change', updatePokojOptions);
+    miejsceSelect.addEventListener(
+        'change',
+        updatePokojOptions
+    );
+
     updatePokojOptions();
 
 }
 
-/* Formularz */
+/* FORMULARZ + SPRAWDZANIE DAT */
 
-const form = document.getElementById('noclegForm');
+const form =
+document.getElementById('noclegForm');
 
 if(form) {
 
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener(
+        'submit',
+        async function(e) {
 
         e.preventDefault();
 
-        const od = form.querySelector('input[name="Od"]').value;
-        const doData = form.querySelector('input[name="Do"]').value;
+        const od =
+        form.querySelector(
+        'input[name="Od"]'
+        ).value;
+
+        const doData =
+        form.querySelector(
+        'input[name="Do"]'
+        ).value;
 
         if(od && doData) {
 
-            const odDate = new Date(od);
-            const doDateObj = new Date(doData);
+            const odDate =
+            new Date(od);
+
+            const doDateObj =
+            new Date(doData);
 
             if(doDateObj < odDate) {
 
                 if(currentLang === "de") {
+
                     alert(
                     "Das Abreisedatum kann nicht vor dem Anreisedatum liegen."
                     );
+
                 }
                 else {
+
                     alert(
                     "Data wyjazdu nie może być wcześniejsza niż data przyjazdu."
                     );
+
                 }
 
                 return;
@@ -119,51 +155,60 @@ if(form) {
 
         }
 
-        const data = new FormData(form);
+        const data =
+        new FormData(form);
 
-        await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: {
-                'Accept': 'application/json'
+        await fetch(
+            form.action,
+            {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept':
+                    'application/json'
+                }
             }
-        });
+        );
 
         form.reset();
 
+        const msg =
         document.getElementById(
-            'successMessage'
-        ).style.display = 'block';
+        'successMessage'
+        );
+
+        if(msg) {
+            msg.style.display = 'block';
+        }
 
     });
 
 }
 
-/* Animacje */
+/* ANIMACJE — BEZPIECZNE */
 
-const sections = document.querySelectorAll("section");
+window.addEventListener(
+"load",
+() => {
 
-window.addEventListener("load", () => {
-
-    sections.forEach(sec =>
-        sec.classList.add("visible")
+    const sections =
+    document.querySelectorAll(
+    "section"
     );
-
-});
-
-window.addEventListener("scroll", () => {
 
     sections.forEach(sec => {
 
-        const top =
-        sec.getBoundingClientRect().top;
+        sec.style.opacity = "1";
+        sec.style.transform =
+        "translateY(0)";
 
-        if(top < window.innerHeight - 100) {
-            sec.classList.add("visible");
-        }
+        sec.classList.add(
+        "visible"
+        );
 
     });
 
 });
 
+</script>
 </script>
