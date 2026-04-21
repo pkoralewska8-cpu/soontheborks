@@ -318,7 +318,11 @@ Zgłoszenie zostało wysłane / Anmeldung wurde gesendet
 
 <script>
 
+<script>
+
 let currentLang = "pl";
+
+const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
 
 function updateCountdown() {
 
@@ -340,34 +344,12 @@ function updateCountdown() {
 
 }
 
-const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
-
 setInterval(updateCountdown, 1000);
-updateCountdown();(() => {
-
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-
-    if(currentLang === "de") {
-        document.getElementById("countdown").innerHTML =
-        days + " Tage " + hours + " Std " + minutes + " Min";
-    }
-    else {
-        document.getElementById("countdown").innerHTML =
-        days + " dni " + hours + " godz " + minutes + " min";
-    }
-
-}, 1000);
+updateCountdown();
 
 function setLang(lang) {
 
     currentLang = lang;
-
-    updateCountdown();
 
     document.querySelectorAll('.trans').forEach(el => {
 
@@ -380,90 +362,112 @@ function setLang(lang) {
 
     });
 
+    updateCountdown();
+
 }
 
-setLang('pl');
-
-// Ukrywanie opcji Studio
+/* Ukrywanie opcji Studio */
 
 const miejsceSelect = document.getElementById('miejsceSelect');
 const pokojSelect = document.getElementById('pokojSelect');
 
-function updatePokojOptions() {
+if(miejsceSelect && pokojSelect) {
 
-    const value = miejsceSelect.value;
+    function updatePokojOptions() {
 
-    for (let i = 0; i < pokojSelect.options.length; i++) {
+        const value = miejsceSelect.value;
 
-        const option = pokojSelect.options[i];
+        for (let i = 0; i < pokojSelect.options.length; i++) {
 
-        if (option.text.includes('Studio')) {
-            option.style.display = value === 'Osada Zborów' ? 'none' : 'block';
+            const option = pokojSelect.options[i];
+
+            if (option.text.includes('Studio')) {
+                option.style.display =
+                value === 'Osada Zborów' ? 'none' : 'block';
+            }
+
+        }
+
+        if (value === 'Osada Zborów' &&
+            pokojSelect.value.includes('Studio')) {
+
+            pokojSelect.selectedIndex = 0;
+
         }
 
     }
 
-    if (value === 'Osada Zborów' && pokojSelect.value.includes('Studio')) {
-        pokojSelect.selectedIndex = 0;
-    }
+    miejsceSelect.addEventListener('change', updatePokojOptions);
+    updatePokojOptions();
 
 }
 
-miejsceSelect.addEventListener('change', updatePokojOptions);
-updatePokojOptions();
-
-// Sprawdzanie dat i wysyłka
+/* Formularz */
 
 const form = document.getElementById('noclegForm');
 
-form.addEventListener('submit', async function(e) {
+if(form) {
 
-    e.preventDefault();
+    form.addEventListener('submit', async function(e) {
 
-    const od = form.querySelector('input[name="Od"]').value;
-    const doData = form.querySelector('input[name="Do"]').value;
+        e.preventDefault();
 
-    if(od && doData) {
+        const od = form.querySelector('input[name="Od"]').value;
+        const doData = form.querySelector('input[name="Do"]').value;
 
-        const odDate = new Date(od);
-        const doDateObj = new Date(doData);
+        if(od && doData) {
 
-        if(doDateObj < odDate) {
+            const odDate = new Date(od);
+            const doDateObj = new Date(doData);
 
-        if(currentLang === "de") {
-            alert("Das Abreisedatum kann nicht vor dem Anreisedatum liegen.");
+            if(doDateObj < odDate) {
+
+                if(currentLang === "de") {
+                    alert(
+                    "Das Abreisedatum kann nicht vor dem Anreisedatum liegen."
+                    );
+                }
+                else {
+                    alert(
+                    "Data wyjazdu nie może być wcześniejsza niż data przyjazdu."
+                    );
+                }
+
+                return;
+
+            }
+
         }
-        else {
-            alert("Data wyjazdu nie może być wcześniejsza niż data przyjazdu.");
-        }
 
-        return;
+        const data = new FormData(form);
 
-    }
+        await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
 
-    const data = new FormData(form);
+        form.reset();
 
-    await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
+        document.getElementById(
+            'successMessage'
+        ).style.display = 'block';
+
     });
 
-    form.reset();
+}
 
-    document.getElementById('successMessage').style.display = 'block';
-
-});
-
-// Animacje sekcji
+/* Animacje */
 
 const sections = document.querySelectorAll("section");
 
 window.addEventListener("load", () => {
 
-    document.querySelectorAll("section").forEach(sec => sec.classList.add("visible"));
+    sections.forEach(sec =>
+        sec.classList.add("visible")
+    );
 
 });
 
@@ -471,7 +475,8 @@ window.addEventListener("scroll", () => {
 
     sections.forEach(sec => {
 
-        const top = sec.getBoundingClientRect().top;
+        const top =
+        sec.getBoundingClientRect().top;
 
         if(top < window.innerHeight - 100) {
             sec.classList.add("visible");
