@@ -9,9 +9,7 @@
 
 <style>
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     margin: 0;
@@ -38,12 +36,9 @@ header h1 {
     font-family: 'Playfair Display', serif;
     font-size: 64px;
     margin: 0;
-    letter-spacing: 1px;
 }
 
-header p {
-    font-size: 20px;
-}
+header p { font-size: 20px; }
 
 section {
     padding: 100px 20px;
@@ -111,13 +106,14 @@ button {
 }
 
 /* RAMKA REZERWACJI */
+
 .reservation-box {
     background: #f7f7f7;
-    border: 1px solid #e3e3e3;
-    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
     padding: 30px 25px;
     margin-top: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
 }
 
 .reservation-box input,
@@ -139,17 +135,11 @@ button {
     border: none;
 }
 
-/* MOBILE */
-
 @media (max-width: 768px) {
 
-    header h1 {
-        font-size: 38px;
-    }
+    header h1 { font-size: 38px; }
 
-    section {
-        padding: 70px 18px;
-    }
+    section { padding: 70px 18px; }
 
 }
 
@@ -175,34 +165,37 @@ button {
 <section>
     <h2 class="trans" data-pl="Harmonogram" data-de="Zeitplan"></h2>
 
-    <p class="trans" 
-    data-pl="16:00 — Ceremonia Ślubna\n17:00 — Obiad\n18:00 — Życzenia\n19:30 — Tort\n20:00 — Pierwszy taniec już Borków\n22:00 — II ciepłe danie\n00:00 — Oczepiny\n01:30 — Wypierdalacz w bufecie*"
-    data-de="16:00 — Trauung\n17:00 — Mittagessen\n18:00 — Glückwünsche\n19:30 — Torte\n20:00 — Eröffnungstanz der Borks\n22:00 — Zweites warmes Gericht\n00:00 — Mitternachtsspiele\n01:30 — Überraschung am Buffet*"></p>
+    <p class="trans"
+    data-pl="16:00 — Ceremonia Ślubna<br>
+    17:00 — Obiad<br>
+    18:00 — Życzenia<br>
+    19:30 — Tort<br>
+    20:00 — Pierwszy taniec już Borków<br>
+    22:00 — II ciepłe danie<br>
+    00:00 — Oczepiny<br>
+    01:30 — Wypierdalacz w bufecie*"
+    data-de="16:00 — Trauung<br>
+    17:00 — Abendessen<br>
+    18:00 — Glückwünsche<br>
+    19:30 — Torte<br>
+    20:00 — Eröffnungstanz der Borks<br>
+    22:00 — Zweites warmes Gericht<br>
+    00:00 — Mitternachtsspiele<br>
+    01:30 — Überraschung am Buffet*"></p>
 
     <p class="trans"
     data-pl="*Z humorem — żeby nikt dziś nie zapomniał cieszyć się życiem."
     data-de="*Mit Humor — damit heute niemand vergisst, das Leben zu genießen."></p>
+
 </section>
 
 <section>
-    <h2 class="trans" data-pl="Poprawiny" data-de="Nachfeier"></h2>
+    <h2 class="trans" data-pl="Drugiego dnia..." data-de="Am zweiten Tag..."></h2>
 
     <p class="trans"
-    data-pl="Zapraszamy w niedzielę od godziny 15:00 na luźne tańce i grill. Poprawiny odbędą się w tym samym miejscu co wesele."
-    data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu lockerem Tanzen und Grillen ein. Die Nachfeier findet am selben Ort statt."></p>
-</section>
+    data-pl="Zapraszamy serdecznie wszystkich gości na 10-lecie naszego Związku. Luźne tańce i grill będą czekać na Was od 15:00 ponownie w sali Okiennik."
+    data-de="Wir laden alle Gäste herzlich zum 10-jährigen Jubiläum unserer Beziehung ein. Lockeres Tanzen und Grillen erwarten euch ab 15:00 Uhr wieder im Saal Okiennik."></p>
 
-<section>
-    <h2 class="trans" data-pl="Lokalizacja" data-de="Ort"></h2>
-
-    <p>
-    Hotel Ostaniec<br>
-    Jaskiniowa 6<br>
-    42-425 Podlesice
-    </p>
-
-    <iframe class="map"
-    src="https://maps.google.com/maps?q=Hotel%20Ostaniec%20Podlesice&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
 </section>
 
 <section>
@@ -216,160 +209,93 @@ button {
     src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA">
 
     <p>
-    <a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank">
-    Dodaj zdjęcia
-    </a>
+        <a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank">
+        Dodaj zdjęcia
+        </a>
     </p>
+
 </section>
 
 <section>
-    <h2 class="trans" data-pl="Zamiast kwiatów" data-de="Statt Blumen"></h2>
+<h2 class="trans" data-pl="Lokalizacja" data-de="Ort"></h2>
 
-    <p class="trans"
-    data-pl="Zamiast kwiatów zachęcamy do wsparcia szczytnego celu. Podczas przyjęcia będzie dostępna puszka na cele charytatywne. Po weselu chcemy wspomóc jedną konkretną osobę, która potrzebuje pomocy."
-    data-de="Anstelle von Blumen möchten wir zu einem guten Zweck ermutigen. Während der Feier wird eine Spendenbox vorhanden sein. Nach der Hochzeit möchten wir einer bestimmten Person helfen."></p>
-</section>
+<p>
+Hotel Ostaniec<br>
+Jaskiniowa 6<br>
+42-425 Podlesice
+</p>
 
-<section>
-    <h2>Dress code</h2>
+<p>
+<a href="https://www.resortjurajski.pl/" target="_blank">
+www.resortjurajski.pl
+</a>
+</p>
 
-    <p>
-    Ubierzcie się pięknie — my postaramy się jeszcze piękniej.
-    🤍 🖤
-    </p>
-</section>
+<iframe class="map"
+src="https://maps.google.com/maps?q=Hotel%20Ostaniec%20Podlesice&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
 
-<section>
-    <h2 class="trans" data-pl="Transport i parking" data-de="Transport und Parkplatz"></h2>
-
-    <p class="trans"
-    data-pl="Parkingu jest wystarczająco dużo. Jeśli ktoś planuje przylecieć z Niemiec do Polski samolotem, pytajcie nas śmiało o wskazówki — chętnie pomożemy."
-    data-de="Es gibt ausreichend Parkplätze. Wenn jemand aus Deutschland mit dem Flugzeug anreisen möchte, fragt uns gerne nach Tipps — wir helfen gerne."></p>
 </section>
 
 <section class="gallery">
-    <h2 class="trans" data-pl="Noclegi" data-de="Unterkunft"></h2>
 
-    <p class="trans"
-    data-pl="Jak już wiecie, noc z soboty na niedzielę idzie na nasz koszt! Jeżeli zamierzacie przyjechać wcześniej lub zostać dłużej poniżej macie zdjęcie z opisem: 1. Przyjęcie ślubne 2. Hotel Ostaniec z 36 dwuosobowymi pokojami i 6 Studio — 2 pokoje 2 osobowe z jedną łazienką 3. Osada Zborów tylko pokoje 2 osobowe."
-    data-de="Wie ihr bereits wisst, übernehmen wir die Übernachtung von Samstag auf Sonntag. Wenn ihr früher anreisen oder länger bleiben möchtet, findet ihr unten ein Bild mit Beschreibung der Unterkunftsmöglichkeiten."></p>
+<h2 class="trans" data-pl="Noclegi" data-de="Unterkunft"></h2>
 
-    <img src="mapa_noclegi.jpg" alt="Mapa noclegów">
+<p class="trans"
+data-pl="Potwierdzenie noclegów — im szybciej tym lepiej, ale nie później niż <strong>01.06.2026</strong>. Dla gości śpiących przed lub po ceremonii noc dłużej wymagana jest wpłata zaliczki 200 zł na konto hotelu."
+data-de="Bitte bestätigt eure Übernachtung so schnell wie möglich, spätestens jedoch bis zum <strong>01.06.2026</strong>. Für zusätzliche Nächte ist eine Anzahlung von 200 zł erforderlich."></p>
 
-    <p class="trans"
-    data-pl="Potwierdzenie noclegów — im szybciej tym lepiej, ale nie później niż 01.06.2026. Dla gości śpiących przed lub po ceremonii noc dłużej wymagana jest wpłata zaliczki 200 zł na konto hotelu."
-    data-de="Bitte bestätigt eure Übernachtung so schnell wie möglich, spätestens jedoch bis zum 01.06.2026. Für zusätzliche Nächte ist eine Anzahlung von 200 zł direkt an das Hotel erforderlich."></p>
+<h2 class="trans" data-pl="Rezerwacja noclegu" data-de="Reservierung der Unterkunft"></h2>
 
-    <p class="trans"
-    data-pl="Prosimy wszystkich o przybycie do recepcji hotelu Ostaniec — tam będziecie dalej pokierowani."
-    data-de="Bitte meldet euch bei der Rezeption des Hotels Ostaniec — dort werdet ihr weitergeleitet."></p>
-    <p class="trans"
-    data-pl="Ceny ze śniadaniem wyglądają następująco:"
-    data-de="Die Preise inklusive Frühstück sind wie folgt:"></p>
+<div class="reservation-box">
 
-    <p class="trans"
-    data-pl="Hotel Ostaniec — Pokój 2 osobowy
-Niedziela - Czwartek 323 zł
-Piątek - Sobota 374 zł
+<form id="noclegForm" action="https://formspree.io/f/xojykjnn" method="POST">
 
-Pokój 4 osobowy (Studio)
-Niedziela - Czwartek 616 zł
-Piątek - Sobota 731 zł
+<p>
+<input type="text" name="Imie_i_nazwisko" placeholder="Imię i nazwisko / Vor- und Nachname" required>
+<input type="email" name="Email" placeholder="Adres e-mail / E-Mail-Adresse" required>
+</p>
 
-Osada Zborów — Pokój 2 osobowy
-Niedziela - Czwartek 306 zł
-Piątek - Sobota 320 zł"
-    data-de="Hotel Ostaniec — Doppelzimmer
-Sonntag - Donnerstag 323 zł
-Freitag - Samstag 374 zł
+<p>
+<select name="Miejsce" id="miejsceSelect">
+<option>Hotel Ostaniec</option>
+<option>Osada Zborów</option>
+</select>
+</p>
 
-Vierbettzimmer (Studio)
-Sonntag - Donnerstag 616 zł
-Freitag - Samstag 731 zł
+<p>
+<select name="Typ_pokoju" id="pokojSelect">
+<option>Pokój 2 osobowy</option>
+<option>Studio (4 osobowy)</option>
+</select>
+</p>
 
-Osada Zborów — Doppelzimmer
-Sonntag - Donnerstag 306 zł
-Freitag - Samstag 320 zł"></p>
+<p>
+Od / Von:<br>
+<input type="date" name="Od" required>
+</p>
 
-    <h2 class="trans" data-pl="Rezerwacja noclegu" data-de="Reservierung der Unterkunft"></h2>
+<p>
+Do / Bis:<br>
+<input type="date" name="Do" required>
+</p>
 
-    <div class="reservation-box">
+<p>
+<button type="submit">Wyślij / Senden</button>
+</p>
 
-    <form id="noclegForm" action="https://formspree.io/f/xojykjnn" method="POST">
+<p id="successMessage" style="display:none; font-weight:600; margin-top:20px;">
+Zgłoszenie zostało wysłane / Anmeldung wurde gesendet
+</p>
 
-        <p>
-        <input type="text" name="Imie_i_nazwisko" placeholder="Imię i nazwisko / Vor- und Nachname" required>
-        </p>
-
-        <p>
-        <input type="email" name="Email" placeholder="Adres e-mail / E-Mail-Adresse" required>
-        </p>
-
-        <p>
-        <select name="Miejsce" id="miejsceSelect">
-            <option>Hotel Ostaniec</option>
-            <option>Osada Zborów</option>
-        </select>
-        </p>
-
-        <p>
-        <select name="Typ_pokoju" id="pokojSelect">
-            <option>Pokój 2 osobowy</option>
-            <option>Studio (4 osobowy)</option>
-        </select>
-        </p>
-
-        <p>
-        Od / Von:<br>
-        <input type="date" name="Od">
-        </p>
-
-        <p>
-        Do / Bis:<br>
-        <input type="date" name="Do">
-        </p>
-
-        <p>
-        <button type="submit">Wyślij / Senden</button>
-        </p>
-
-            <p id="successMessage" style="display:none; font-weight:600; margin-top:20px;">
-        Zgłoszenie zostało wysłane / Anmeldung wurde gesendet
-        </p>
-
-        </form>
+</form>
 
 </div>
 
 </section>
 
-<section>
-    <h2 class="trans" data-pl="Dzieci" data-de="Kinder"></h2>
-
-    <p class="trans"
-    data-pl="Dla dzieci będzie dostępny animator w godzinach 19:00–22:00."
-    data-de="Für Kinder steht ein Animator von 19:00 bis 22:00 Uhr zur Verfügung."></p>
-</section>
-
-<section>
-    <h2>Menu Vege</h2>
-
-    <p>
-    Gości, którzy chcą mieć menu Vege,
-    prosimy o informację bezpośrednio do nas.
-    </p>
-</section>
-
-<section>
-    <h2 class="trans" data-pl="Świadkowie" data-de="Trauzeugen"></h2>
-
-    <p>
-    Łukasz — +48 510 977 997<br>
-    Michał — +48 503 833 619
-    </p>
-</section>
-
 <script>
+
+let currentLang = "pl";
 
 const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
 
@@ -382,20 +308,28 @@ setInterval(() => {
     const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
     const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
 
-    document.getElementById("countdown").innerHTML =
-    days + " dni " + hours + " godz " + minutes + " min";
+    if(currentLang === "de") {
+        document.getElementById("countdown").innerHTML =
+        days + " Tage " + hours + " Std " + minutes + " Min";
+    }
+    else {
+        document.getElementById("countdown").innerHTML =
+        days + " dni " + hours + " godz " + minutes + " min";
+    }
 
 }, 1000);
 
 function setLang(lang) {
 
+    currentLang = lang;
+
     document.querySelectorAll('.trans').forEach(el => {
 
         if(lang === 'de') {
-            el.innerText = el.getAttribute('data-de');
+            el.innerHTML = el.getAttribute('data-de');
         }
         else {
-            el.innerText = el.getAttribute('data-pl');
+            el.innerHTML = el.getAttribute('data-pl');
         }
 
     });
@@ -404,34 +338,57 @@ function setLang(lang) {
 
 setLang('pl');
 
-// Ukrywanie opcji Studio dla Osada Zborów
+// Ukrywanie opcji Studio
+
 const miejsceSelect = document.getElementById('miejsceSelect');
 const pokojSelect = document.getElementById('pokojSelect');
 
 function updatePokojOptions() {
+
     const value = miejsceSelect.value;
 
     for (let i = 0; i < pokojSelect.options.length; i++) {
+
         const option = pokojSelect.options[i];
 
         if (option.text.includes('Studio')) {
             option.style.display = value === 'Osada Zborów' ? 'none' : 'block';
         }
+
     }
 
     if (value === 'Osada Zborów' && pokojSelect.value.includes('Studio')) {
         pokojSelect.selectedIndex = 0;
     }
+
 }
 
 miejsceSelect.addEventListener('change', updatePokojOptions);
 updatePokojOptions();
 
-// Komunikat po wysłaniu
+// Sprawdzanie dat i wysyłka
+
 const form = document.getElementById('noclegForm');
 
 form.addEventListener('submit', async function(e) {
+
     e.preventDefault();
+
+    const od = form.querySelector('input[name="Od"]').value;
+    const doData = form.querySelector('input[name="Do"]').value;
+
+    if(od && doData && doData < od) {
+
+        if(currentLang === "de") {
+            alert("Das Abreisedatum kann nicht vor dem Anreisedatum liegen.");
+        }
+        else {
+            alert("Data wyjazdu nie może być wcześniejsza niż data przyjazdu.");
+        }
+
+        return;
+
+    }
 
     const data = new FormData(form);
 
@@ -446,13 +403,17 @@ form.addEventListener('submit', async function(e) {
     form.reset();
 
     document.getElementById('successMessage').style.display = 'block';
+
 });
+
+// Animacje sekcji
 
 const sections = document.querySelectorAll("section");
 
-// Sekcje widoczne od razu po załadowaniu strony
 window.addEventListener("load", () => {
+
     document.querySelectorAll("section").forEach(sec => sec.classList.add("visible"));
+
 });
 
 window.addEventListener("scroll", () => {
