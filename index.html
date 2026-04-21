@@ -264,7 +264,7 @@ Freitag - Samstag 320 zł"></p>
 
     <h2 class="trans" data-pl="Rezerwacja noclegu" data-de="Reservierung der Unterkunft"></h2>
 
-    <form id="noclegForm" action="https://formspree.io/f/xrbqgqpa" method="POST">
+    <form id="noclegForm" action="https://formspree.io/f/xojykjnn" method="POST">
 
         <p>
         <input type="text" name="Imie_i_nazwisko" placeholder="Imię i nazwisko / Vor- und Nachname" required>
@@ -388,15 +388,37 @@ function updatePokojOptions() {
 }
 
 miejsceSelect.addEventListener('change', updatePokojOptions);
-updatePoko
+updatePokojOptions();
 
-const sections = document.querySelectorAll("section");
+// Komunikat po wysłaniu
+const form = document.getElementById('noclegForm');
 
-window.addEventListener("scroll", () => {
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-    sections.forEach(sec => {
+    const data = new FormData(form);
 
-        const top = sec.getBoundingClientRect().top;
+    await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    form.reset();
+
+    document.getElementById('successMessage').style.display = 'block';
+});
+
+const sections = d("section");
+
+window.addEventListener(// Sekcje widoczne od razu po załadowaniu strony
+window.addEventListener("load", () => {
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("visible"));
+});
+
+window.addEventListener("scroll",p = sec.getBoundingClientRect().top;
 
         if(top < window.innerHeight - 100) {
             sec.classList.add("visible");
