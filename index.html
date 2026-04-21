@@ -66,6 +66,11 @@ p {
     font-size: 18px;
 }
 
+/* Harmonogram - każda linia pod sobą */
+.schedule-lines {
+    line-height: 1.9;
+}
+
 .countdown {
     font-size: 26px;
     margin-top: 20px;
@@ -166,7 +171,15 @@ button {
     <h2 class="trans" data-pl="Harmonogram" data-de="Zeitplan"></h2>
 
     <p class="trans"
+    class="trans schedule-lines"
     data-pl="16:00 — Ceremonia Ślubna<br>
+17:00 — Obiad<br>
+18:00 — Życzenia<br>
+19:30 — Tort<br>
+20:00 — Pierwszy taniec już Borków<br>
+22:00 — II ciepłe danie<br>
+00:00 — Oczepiny<br>
+01:30 — Wypierdalacz w bufecie*"<br>
     17:00 — Obiad<br>
     18:00 — Życzenia<br>
     19:30 — Tort<br>
@@ -293,13 +306,44 @@ Zgłoszenie zostało wysłane / Anmeldung wurde gesendet
 
 </section>
 
+<section>
+    <h2 class="trans" data-pl="Kontakt do naszych Świadków" data-de="Kontakt zu unseren Trauzeugen"></h2>
+
+    <p>
+    Łukasz — <a href="tel:+48501977997">+48 501 977 997</a><br>
+    Michał — <a href="tel:+48503833619">+48 503 833 619</a>
+    </p>
+
+</section>
+
 <script>
 
 let currentLang = "pl";
 
+function updateCountdown() {
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+
+    if(currentLang === "de") {
+        document.getElementById("countdown").innerHTML =
+        days + " Tage " + hours + " Std " + minutes + " Min";
+    }
+    else {
+        document.getElementById("countdown").innerHTML =
+        days + " dni " + hours + " godz " + minutes + " min";
+    }
+
+}
+
 const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
 
-setInterval(() => {
+setInterval(updateCountdown, 1000);
+updateCountdown();(() => {
 
     const now = new Date().getTime();
     const distance = weddingDate - now;
@@ -322,6 +366,8 @@ setInterval(() => {
 function setLang(lang) {
 
     currentLang = lang;
+
+    updateCountdown();
 
     document.querySelectorAll('.trans').forEach(el => {
 
@@ -377,7 +423,12 @@ form.addEventListener('submit', async function(e) {
     const od = form.querySelector('input[name="Od"]').value;
     const doData = form.querySelector('input[name="Do"]').value;
 
-    if(od && doData && doData < od) {
+    if(od && doData) {
+
+        const odDate = new Date(od);
+        const doDateObj = new Date(doData);
+
+        if(doDateObj < odDate) {
 
         if(currentLang === "de") {
             alert("Das Abreisedatum kann nicht vor dem Anreisedatum liegen.");
