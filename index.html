@@ -411,14 +411,18 @@ form.addEventListener('submit', async function(e) {
     document.getElementById('successMessage').style.display = 'block';
 });
 
-const sections = d("section");
+const sections = document.querySelectorAll("section");
 
-window.addEventListener(// Sekcje widoczne od razu po załadowaniu strony
+// Sekcje widoczne od razu po załadowaniu strony
 window.addEventListener("load", () => {
     document.querySelectorAll("section").forEach(sec => sec.classList.add("visible"));
 });
 
-window.addEventListener("scroll",p = sec.getBoundingClientRect().top;
+window.addEventListener("scroll", () => {
+
+    sections.forEach(sec => {
+
+        const top = sec.getBoundingClientRect().top;
 
         if(top < window.innerHeight - 100) {
             sec.classList.add("visible");
