@@ -463,25 +463,15 @@ if(form) {
 
 const sections = document.querySelectorAll("section");
 
+
 window.addEventListener("load", () => {
 
-    sections.forEach(sec =>
-        sec.classList.add("visible")
-    );
-
-});
-
-window.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("section");
 
     sections.forEach(sec => {
-
-        const top =
-        sec.getBoundingClientRect().top;
-
-        if(top < window.innerHeight - 100) {
-            sec.classList.add("visible");
-        }
-
+        sec.style.opacity = "1";
+        sec.style.transform = "translateY(0)";
+        sec.classList.add("visible");
     });
 
 });
