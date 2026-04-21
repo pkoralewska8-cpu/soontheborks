@@ -234,6 +234,76 @@ button {
     <p class="trans"
     data-pl="Prosimy wszystkich o przybycie do recepcji hotelu Ostaniec — tam będziecie dalej pokierowani."
     data-de="Bitte meldet euch bei der Rezeption des Hotels Ostaniec — dort werdet ihr weitergeleitet."></p>
+    <p class="trans"
+    data-pl="Ceny ze śniadaniem wyglądają następująco:"
+    data-de="Die Preise inklusive Frühstück sind wie folgt:"></p>
+
+    <p class="trans"
+    data-pl="Hotel Ostaniec — Pokój 2 osobowy
+Niedziela - Czwartek 323 zł
+Piątek - Sobota 374 zł
+
+Pokój 4 osobowy (Studio)
+Niedziela - Czwartek 616 zł
+Piątek - Sobota 731 zł
+
+Osada Zborów — Pokój 2 osobowy
+Niedziela - Czwartek 306 zł
+Piątek - Sobota 320 zł"
+    data-de="Hotel Ostaniec — Doppelzimmer
+Sonntag - Donnerstag 323 zł
+Freitag - Samstag 374 zł
+
+Vierbettzimmer (Studio)
+Sonntag - Donnerstag 616 zł
+Freitag - Samstag 731 zł
+
+Osada Zborów — Doppelzimmer
+Sonntag - Donnerstag 306 zł
+Freitag - Samstag 320 zł"></p>
+
+    <h2 class="trans" data-pl="Rezerwacja noclegu" data-de="Reservierung der Unterkunft"></h2>
+
+    <form id="noclegForm" action="https://formspree.io/f/xrbqgqpa" method="POST">
+
+        <p>
+        <input type="text" name="Imie_i_nazwisko" placeholder="Imię i nazwisko / Vor- und Nachname" required>
+        </p>
+
+        <p>
+        <select name="Miejsce" id="miejsceSelect">
+            <option>Hotel Ostaniec</option>
+            <option>Osada Zborów</option>
+        </select>
+        </p>
+
+        <p>
+        <select name="Typ_pokoju" id="pokojSelect">
+            <option>Pokój 2 osobowy</option>
+            <option>Studio (4 osobowy)</option>
+        </select>
+        </p>
+
+        <p>
+        Od / Von:<br>
+        <input type="date" name="Od">
+        </p>
+
+        <p>
+        Do / Bis:<br>
+        <input type="date" name="Do">
+        </p>
+
+        <p>
+        <button type="submit">Wyślij / Senden</button>
+        </p>
+
+            <p id="successMessage" style="display:none; font-weight:600; margin-top:20px;">
+        Zgłoszenie zostało wysłane / Anmeldung wurde gesendet
+        </p>
+
+    </form>
+
 </section>
 
 <section>
@@ -297,6 +367,29 @@ function setLang(lang) {
 
 setLang('pl');
 
+// Ukrywanie opcji Studio dla Osada Zborów
+const miejsceSelect = document.getElementById('miejsceSelect');
+const pokojSelect = document.getElementById('pokojSelect');
+
+function updatePokojOptions() {
+    const value = miejsceSelect.value;
+
+    for (let i = 0; i < pokojSelect.options.length; i++) {
+        const option = pokojSelect.options[i];
+
+        if (option.text.includes('Studio')) {
+            option.style.display = value === 'Osada Zborów' ? 'none' : 'block';
+        }
+    }
+
+    if (value === 'Osada Zborów' && pokojSelect.value.includes('Studio')) {
+        pokojSelect.selectedIndex = 0;
+    }
+}
+
+miejsceSelect.addEventListener('change', updatePokojOptions);
+updatePoko
+
 const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", () => {
@@ -317,4 +410,3 @@ window.addEventListener("scroll", () => {
 
 </body>
 </html>
- 
