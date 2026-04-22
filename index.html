@@ -21,8 +21,7 @@ body {
 
 header {
     height: 100vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
     url('https://images.unsplash.com/photo-1529636798458-92182e662485');
     background-size: cover;
     background-position: center;
@@ -39,14 +38,20 @@ header h1 {
     margin: 0;
 }
 
-header p {
-    font-size: 20px;
-}
+header p { font-size: 20px; }
 
 section {
     padding: 100px 20px;
     max-width: 900px;
     margin: auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 h2 {
@@ -61,6 +66,7 @@ p {
     font-size: 18px;
 }
 
+/* Harmonogram - każda linia pod sobą */
 .schedule-lines {
     line-height: 1.9;
 }
@@ -104,12 +110,15 @@ button {
     margin: 30px auto;
 }
 
+/* RAMKA REZERWACJI */
+
 .reservation-box {
     background: #f7f7f7;
     border: 1px solid #e5e5e5;
     border-radius: 14px;
     padding: 30px 25px;
     margin-top: 30px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
 }
 
 .reservation-box input,
@@ -131,23 +140,31 @@ button {
     border: none;
 }
 
+@media (max-width: 768px) {
+
+    header h1 { font-size: 38px; }
+
+    section { padding: 70px 18px; }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="lang">
-<button onclick="setLang('pl')">PL</button>
-<button onclick="setLang('de')">DE</button>
+    <button onclick="setLang('pl')">PL</button>
+    <button onclick="setLang('de')">DE</button>
 </div>
 
 <header>
-<div>
-<h1>Patrick & Patrycja</h1>
-<p>Soon the Bork's</p>
-<p>05.09.2026 | 16:00</p>
-<div class="countdown" id="countdown"></div>
-</div>
+    <div>
+        <h1>Patrick & Patrycja</h1>
+        <p id="subtitle">Soon the Bork's</p>
+        <p>05.09.2026 | 16:00</p>
+        <div class="countdown" id="countdown"></div>
+    </div>
 </header>
 
 <section>
@@ -189,17 +206,13 @@ data-de="*Mit Humor — damit heute niemand vergisst, das Leben zu genießen.">
 <section>
 
 <h2 class="trans"
-data-pl="Zdjęcia z wesela"
-data-de="Fotos von der Hochzeit">
+data-pl="10-lecie naszego Związku"
+data-de="10-jähriges Jubiläum unserer Beziehung">
 </h2>
 
-<img class="qr"
-src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA">
-
-<p>
-<a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank">
-Dodaj zdjęcia
-</a>
+<p class="trans"
+data-pl="Zapraszamy w niedzielę od godziny 15:00 na luźne tańce i grilla. Poprawiny odbędą się w tym samym miejscu co wesele."
+data-de="Wir laden euch am Sonntag ab 15:00 Uhr zu lockerem Tanzen und Grillen ein. Die Nachfeier findet am selben Ort statt.">
 </p>
 
 </section>
@@ -232,67 +245,65 @@ src="https://maps.google.com/maps?q=Hotel%20Ostaniec%20Podlesice&output=embed">
 <section>
 
 <h2 class="trans"
-data-pl="Rezerwacja noclegu"
-data-de="Reservierung der Unterkunft">
+data-pl="Zamiast kwiatów"
+data-de="Statt Blumen">
 </h2>
 
-<div class="reservation-box">
+<p class="trans"
+data-pl="Zamiast kwiatów zachęcamy do wsparcia szczytnego celu. Podczas przyjęcia będzie dostępna puszka na cele charytatywne. Po weselu wspomożemy jedną konkretną osobę, która potrzebuje pomocy."
+data-de="Anstelle von Blumen möchten wir zu einem guten Zweck ermutigen. Während der Feier wird eine Spendenbox vorhanden sein. Nach der Hochzeit möchten wir einer bestimmten Person helfen, die Unterstützung braucht.">
+</p>
 
-<form id="noclegForm"
-action="https://formspree.io/f/xojykjnn"
-method="POST">
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Animator dla dzieci"
+data-de="Kinderanimation">
+</h2>
+
+<p class="trans"
+data-pl="Najmłodsi goście nie będą się nudzić — od 19:00 do 22:00 nad dobrą zabawą dzieci czuwać będzie Animator, a rodzice będą mogli spokojnie zatańczyć."
+data-de="Unsere kleinen Gäste werden sich nicht langweilen — von 19:00 bis 22:00 sorgt ein Kinderanimateur für Spaß, während die Eltern entspannt tanzen können.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Menu Vege"
+data-de="Vegetarisches Menü">
+</h2>
+
+<p class="trans"
+data-pl="Gości, którzy chcą mieć menu Vege, prosimy o kontakt bezpośrednio z nami."
+data-de="Gäste, die ein vegetarisches Menü wünschen, bitten wir um direkte Kontaktaufnahme mit uns.">
+</p>
+
+</section>
+
+<section>
+
+<h2 class="trans"
+data-pl="Zdjęcia z wesela"
+data-de="Fotos von der Hochzeit">
+</h2>
+
+<p class="trans"
+data-pl="Każda chwila tak szybko ucieka. Będziemy wdzięczni, jeśli podzielicie się z nami Waszymi zdjęciami — nie tylko z nami w roli głównej, oczywiście z Wesela ☺"
+data-de="Jeder Moment vergeht so schnell. Wir wären sehr dankbar, wenn ihr eure Fotos mit uns teilt — nicht nur mit uns in der Hauptrolle, natürlich von der Hochzeit ☺">
+</p>
+
+<img class="qr"
+src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://photos.app.goo.gl/XJbj8UqFY39CLZpJA">
 
 <p>
-<input type="text"
-name="Imie_i_nazwisko"
-placeholder="Imię i nazwisko / Vor- und Nachname"
-required>
-
-<input type="email"
-name="Email"
-placeholder="Adres e-mail / E-Mail-Adresse"
-required>
+<a href="https://photos.app.goo.gl/XJbj8UqFY39CLZpJA" target="_blank">
+Dodaj zdjęcia
+</a>
 </p>
-
-<p>
-<select name="Miejsce" id="miejsceSelect">
-<option>Hotel Ostaniec</option>
-<option>Osada Zborów</option>
-</select>
-</p>
-
-<p>
-<select name="Typ_pokoju" id="pokojSelect">
-<option>Pokój 2 osobowy</option>
-<option>Studio (4 osobowy)</option>
-</select>
-</p>
-
-<p>
-Od / Von:<br>
-<input type="date" name="Od" required>
-</p>
-
-<p>
-Do / Bis:<br>
-<input type="date" name="Do" required>
-</p>
-
-<p>
-<button type="submit">
-Wyślij / Senden
-</button>
-</p>
-
-<p id="successMessage"
-style="display:none;font-weight:600;">
-Zgłoszenie zostało wysłane /
-Anmeldung wurde gesendet
-</p>
-
-</form>
-
-</div>
 
 </section>
 
@@ -304,15 +315,8 @@ data-de="Kontakt zu unseren Trauzeugen">
 </h2>
 
 <p>
-Łukasz —
-<a href="tel:+48501977997">
-+48 501 977 997
-</a>
-<br>
-Michał —
-<a href="tel:+48503833619">
-+48 503 833 619
-</a>
+Łukasz — <a href="tel:+48501977997">+48 501 977 997</a><br>
+Michał — <a href="tel:+48503833619">+48 503 833 619</a>
 </p>
 
 </section>
@@ -321,74 +325,166 @@ Michał —
 
 let currentLang = "pl";
 
-const weddingDate =
-new Date("Sep 5, 2026 16:00:00").getTime();
-
 function updateCountdown() {
 
-const now = new Date().getTime();
-const distance = weddingDate - now;
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-const days =
-Math.floor(distance / (1000 * 60 * 60 * 24));
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
 
-const hours =
-Math.floor((distance %
-(1000*60*60*24)) /
-(1000*60*60));
-
-const minutes =
-Math.floor((distance %
-(1000*60*60)) /
-(1000*60));
-
-if(currentLang === "de") {
-
-document.getElementById("countdown")
-.innerHTML =
-days + " Tage " +
-hours + " Std " +
-minutes + " Min";
-
-}
-else {
-
-document.getElementById("countdown")
-.innerHTML =
-days + " dni " +
-hours + " godz " +
-minutes + " min";
+    if(currentLang === "de") {
+        document.getElementById("countdown").innerHTML =
+        days + " Tage " + hours + " Std " + minutes + " Min";
+    }
+    else {
+        document.getElementById("countdown").innerHTML =
+        days + " dni " + hours + " godz " + minutes + " min";
+    }
 
 }
 
-}
+const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
 
 setInterval(updateCountdown, 1000);
+updateCountdown();(() => {
+
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+
+    if(currentLang === "de") {
+        document.getElementById("countdown").innerHTML =
+        days + " Tage " + hours + " Std " + minutes + " Min";
+    }
+    else {
+        document.getElementById("countdown").innerHTML =
+        days + " dni " + hours + " godz " + minutes + " min";
+    }
+
+}, 1000);
 
 function setLang(lang) {
 
-currentLang = lang;
+    currentLang = lang;
 
-document
-.querySelectorAll('.trans')
-.forEach(el => {
+    updateCountdown();
 
-if(lang === 'de') {
-el.innerHTML =
-el.getAttribute('data-de');
-}
-else {
-el.innerHTML =
-el.getAttribute('data-pl');
-}
+    document.querySelectorAll('.trans').forEach(el => {
 
-});
+        if(lang === 'de') {
+            el.innerHTML = el.getAttribute('data-de');
+        }
+        else {
+            el.innerHTML = el.getAttribute('data-pl');
+        }
 
-updateCountdown();
+    });
 
 }
 
 setLang('pl');
+
+// Ukrywanie opcji Studio
+
+const miejsceSelect = document.getElementById('miejsceSelect');
+const pokojSelect = document.getElementById('pokojSelect');
+
+function updatePokojOptions() {
+
+    const value = miejsceSelect.value;
+
+    for (let i = 0; i < pokojSelect.options.length; i++) {
+
+        const option = pokojSelect.options[i];
+
+        if (option.text.includes('Studio')) {
+            option.style.display = value === 'Osada Zborów' ? 'none' : 'block';
+        }
+
+    }
+
+    if (value === 'Osada Zborów' && pokojSelect.value.includes('Studio')) {
+        pokojSelect.selectedIndex = 0;
+    }
+
+}
+
+miejsceSelect.addEventListener('change', updatePokojOptions);
+updatePokojOptions();
+
+// Sprawdzanie dat i wysyłka
+
+const form = document.getElementById('noclegForm');
+
+form.addEventListener('submit', async function(e) {
+
+    e.preventDefault();
+
+    const od = form.querySelector('input[name="Od"]').value;
+    const doData = form.querySelector('input[name="Do"]').value;
+
+    if(od && doData) {
+
+        const odDate = new Date(od);
+        const doDateObj = new Date(doData);
+
+        if(doDateObj < odDate) {
+
+        if(currentLang === "de") {
+            alert("Das Abreisedatum kann nicht vor dem Anreisedatum liegen.");
+        }
+        else {
+            alert("Data wyjazdu nie może być wcześniejsza niż data przyjazdu.");
+        }
+
+        return;
+
+    }
+
+    const data = new FormData(form);
+
+    await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    form.reset();
+
+    document.getElementById('successMessage').style.display = 'block';
+
+});
+
+// Animacje sekcji
+
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("load", () => {
+
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("visible"));
+
+});
+
+window.addEventListener("scroll", () => {
+
+    sections.forEach(sec => {
+
+        const top = sec.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100) {
+            sec.classList.add("visible");
+        }
+
+    });
+
+});
 
 </script>
 
