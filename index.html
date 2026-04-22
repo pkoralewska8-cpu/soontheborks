@@ -325,163 +325,207 @@ Michał — <a href="tel:+48503833619">+48 503 833 619</a>
 
 let currentLang = "pl";
 
+const weddingDate =
+new Date("Sep 5, 2026 16:00:00").getTime();
+
+/* LICZNIK */
+
 function updateCountdown() {
 
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (distance %
+        (1000*60*60*24)) /
+        (1000*60*60)
+    );
+
+    const minutes = Math.floor(
+        (distance %
+        (1000*60*60)) /
+        (1000*60)
+    );
 
     if(currentLang === "de") {
-        document.getElementById("countdown").innerHTML =
-        days + " Tage " + hours + " Std " + minutes + " Min";
+
+        document.getElementById(
+        "countdown").innerHTML =
+
+        days + " Tage " +
+        hours + " Std " +
+        minutes + " Min";
+
     }
+
     else {
-        document.getElementById("countdown").innerHTML =
-        days + " dni " + hours + " godz " + minutes + " min";
+
+        document.getElementById(
+        "countdown").innerHTML =
+
+        days + " dni " +
+        hours + " godz " +
+        minutes + " min";
+
     }
 
 }
 
-const weddingDate = new Date("Sep 5, 2026 16:00:00").getTime();
-
 setInterval(updateCountdown, 1000);
-updateCountdown();(() => {
+updateCountdown();
 
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-
-    if(currentLang === "de") {
-        document.getElementById("countdown").innerHTML =
-        days + " Tage " + hours + " Std " + minutes + " Min";
-    }
-    else {
-        document.getElementById("countdown").innerHTML =
-        days + " dni " + hours + " godz " + minutes + " min";
-    }
-
-}, 1000);
+/* JĘZYK */
 
 function setLang(lang) {
 
     currentLang = lang;
 
-    updateCountdown();
-
-    document.querySelectorAll('.trans').forEach(el => {
+    document
+    .querySelectorAll('.trans')
+    .forEach(el => {
 
         if(lang === 'de') {
-            el.innerHTML = el.getAttribute('data-de');
+            el.innerHTML =
+            el.getAttribute('data-de');
         }
+
         else {
-            el.innerHTML = el.getAttribute('data-pl');
+            el.innerHTML =
+            el.getAttribute('data-pl');
         }
 
     });
+
+    updateCountdown();
 
 }
 
 setLang('pl');
 
-// Ukrywanie opcji Studio
+/* FORMULARZ */
 
-const miejsceSelect = document.getElementById('miejsceSelect');
-const pokojSelect = document.getElementById('pokojSelect');
+const form =
+document.getElementById(
+'noclegForm'
+);
 
-function updatePokojOptions() {
+if(form) {
 
-    const value = miejsceSelect.value;
-
-    for (let i = 0; i < pokojSelect.options.length; i++) {
-
-        const option = pokojSelect.options[i];
-
-        if (option.text.includes('Studio')) {
-            option.style.display = value === 'Osada Zborów' ? 'none' : 'block';
-        }
-
-    }
-
-    if (value === 'Osada Zborów' && pokojSelect.value.includes('Studio')) {
-        pokojSelect.selectedIndex = 0;
-    }
-
-}
-
-miejsceSelect.addEventListener('change', updatePokojOptions);
-updatePokojOptions();
-
-// Sprawdzanie dat i wysyłka
-
-const form = document.getElementById('noclegForm');
-
-form.addEventListener('submit', async function(e) {
+form.addEventListener(
+'submit',
+async function(e) {
 
     e.preventDefault();
 
-    const od = form.querySelector('input[name="Od"]').value;
-    const doData = form.querySelector('input[name="Do"]').value;
+    const od =
+    form.querySelector(
+    'input[name="Od"]'
+    ).value;
+
+    const doData =
+    form.querySelector(
+    'input[name="Do"]'
+    ).value;
 
     if(od && doData) {
 
-        const odDate = new Date(od);
-        const doDateObj = new Date(doData);
+        const odDate =
+        new Date(od);
+
+        const doDateObj =
+        new Date(doData);
 
         if(doDateObj < odDate) {
 
-        if(currentLang === "de") {
-            alert("Das Abreisedatum kann nicht vor dem Anreisedatum liegen.");
-        }
-        else {
-            alert("Data wyjazdu nie może być wcześniejsza niż data przyjazdu.");
-        }
+            if(currentLang === "de") {
 
-        return;
+                alert(
+                "Das Abreisedatum kann nicht vor dem Anreisedatum liegen."
+                );
+
+            }
+
+            else {
+
+                alert(
+                "Data wyjazdu nie może być wcześniejsza niż data przyjazdu."
+                );
+
+            }
+
+            return;
 
         }
 
     }
 
-    const data = new FormData(form);
+    const data =
+    new FormData(form);
 
-    await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-            'Accept': 'application/json'
+    await fetch(
+        form.action,
+        {
+            method: 'POST',
+            body: data,
+            headers: {
+                'Accept':
+                'application/json'
+            }
         }
-    });
+    );
 
     form.reset();
 
-    document.getElementById('successMessage').style.display = 'block';
+    document
+    .getElementById(
+    'successMessage'
+    ).style.display =
+    'block';
 
 });
 
-// Animacje sekcji
+}
 
-const sections = document.querySelectorAll("section");
+/* ANIMACJE */
 
-window.addEventListener("load", () => {
+const sections =
+document.querySelectorAll(
+"section"
+);
 
-    document.querySelectorAll("section").forEach(sec => sec.classList.add("visible"));
+window.addEventListener(
+"load",
+() => {
+
+    sections.forEach(sec =>
+        sec.classList.add(
+        "visible"
+        )
+    );
 
 });
 
-window.addEventListener("scroll", () => {
+window.addEventListener(
+"scroll",
+() => {
 
     sections.forEach(sec => {
 
-        const top = sec.getBoundingClientRect().top;
+        const top =
+        sec.getBoundingClientRect()
+        .top;
 
-        if(top < window.innerHeight - 100) {
-            sec.classList.add("visible");
+        if(top <
+        window.innerHeight - 100) {
+
+            sec.classList.add(
+            "visible"
+            );
+
         }
 
     });
